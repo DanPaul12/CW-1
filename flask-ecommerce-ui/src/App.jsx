@@ -29,9 +29,11 @@ class App extends Component{
               {selectedCustomerID && (
                         <p> Customer id is {selectedCustomerID}</p>
                     )}
-              <OrderList 
+              {selectedCustomerID &&
+              (<OrderList 
                 customerID = {selectedCustomerID}
                 onOrderSelect = {this.handleOrderSelect}/>
+              )}
             </div>
 
         )

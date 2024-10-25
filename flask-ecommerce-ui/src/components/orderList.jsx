@@ -15,8 +15,6 @@ const OrderList = ({customerid, onOrderSelect}) => {
     }, [customerid])
 
 
-
-
         return(
             <div className="orders">
                 <h3>Orders</h3>
@@ -28,5 +26,5 @@ const OrderList = ({customerid, onOrderSelect}) => {
             </div>
         )
     }
-    
+
 export default OrderList
