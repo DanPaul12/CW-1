@@ -20,7 +20,7 @@ class App extends Component{
   }
 
   render() {
-    const { selectedCustomerID, selectedOrder } = this.state
+    const { selectedCustomerID} = this.state
       
       return (
             <div id='container'>
@@ -32,8 +32,10 @@ class App extends Component{
               {selectedCustomerID &&
               (<OrderList 
                 customerID = {selectedCustomerID}
-                onOrderSelect = {this.handleOrderSelect}/>
+                />
+              
               )}
+              
             </div>
 
         )

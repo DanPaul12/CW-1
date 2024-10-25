@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react"
 
 
-const OrderList = ({customerid, onOrderSelect}) => {
+const OrderList = ({customerid}) => {
     const [orders, setOrders] = useState([])
 
     useEffect(() => {
         if (customerid) {
             const fetchedOrders= [
                 {id: 101, date : '10/27'},
-                {id: 102, date : '10/28'}
+                {id: 102, date : '10/28'},
             ]
         setOrders(fetchedOrders)
         }
@@ -20,9 +20,10 @@ const OrderList = ({customerid, onOrderSelect}) => {
                 <h3>Orders</h3>
                 <ul>
                     {orders.map(order => (
-                    <li key={order.id} onClick={()=>onOrderSelect(order.id)}> 
+                    <li key={order.id}> 
                     ID: {order.id} Date: {order.date}</li>))}
                 </ul>
+                {console.log(orders)}
             </div>
         )
     }
