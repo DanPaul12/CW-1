@@ -31,7 +31,7 @@ class CustomerList extends Component {
                     {customers.map(customer => (
                         <li key = {customer.id} onClick={()=>this.selectCustomer(customer.id)}> 
                         {customer.name}</li>
-                    ) )}
+                    ))}
                 </ul>
             </div>
             

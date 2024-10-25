@@ -21,7 +21,8 @@ const OrderList = ({customerid}) => {
                 <ul>
                     {orders.map(order => (
                     <li key={order.id}> 
-                    ID: {order.id} Date: {order.date}</li>))}
+                    ID: {order.id} Date: {order.date}</li>
+                ))}
                 </ul>
                 {console.log(orders)}
             </div>
