@@ -1,5 +1,6 @@
 import { Component, useState } from 'react'
 import CustomerList from './components/customerList'
+import OrderList from './components/orderList'
 
 
 class App extends Component{
@@ -28,7 +29,9 @@ class App extends Component{
               {selectedCustomerID && (
                         <p> Customer id is {selectedCustomerID}</p>
                     )}
-              <OrderList onOrderSelect = {this.handleOrderSelect}/>
+              <OrderList 
+                customerID = {selectedCustomerID}
+                onOrderSelect = {this.handleOrderSelect}/>
             </div>
 
         )
