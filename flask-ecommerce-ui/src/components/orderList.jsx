@@ -15,7 +15,7 @@ const OrderList = ({customerid, onOrderSelect}) => {
     }, [customerid])
 
 
-    render(){
+
 
         return(
             <div className="orders">
@@ -27,7 +27,5 @@ const OrderList = ({customerid, onOrderSelect}) => {
                 </ul>
             </div>
         )
-    }
-}
 
 export default OrderList

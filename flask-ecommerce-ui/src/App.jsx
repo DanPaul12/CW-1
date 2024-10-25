@@ -6,6 +6,7 @@ class App extends Component{
   constructor(props){
     super(props)
       this.state = {selectedCustomerID : null}
+      this.state = {selectedOrder : null}
     }
 
 
@@ -13,8 +14,12 @@ class App extends Component{
     this.setState({selectedCustomerID : customerID})
   }
 
+  handleOrderSelect = (orderID) => {
+    this.setState({selectedOrder : orderID})
+  }
+
   render() {
-    const { selectedCustomerID } = this.state
+    const { selectedCustomerID, selectedOrder } = this.state
       
       return (
             <div id='container'>
@@ -23,6 +28,7 @@ class App extends Component{
               {selectedCustomerID && (
                         <p> Customer id is {selectedCustomerID}</p>
                     )}
+              <OrderList onOrderSelect = {this.handleOrderSelect}/>
             </div>
 
         )
