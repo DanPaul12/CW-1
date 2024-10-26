@@ -1,6 +1,7 @@
 import { Component, useState } from 'react'
 import CustomerList from './components/customerList'
 import OrderList from './components/orderList'
+import ProductList from './components/productList'
 
 
 class App extends Component{
@@ -20,7 +21,7 @@ class App extends Component{
   }
 
   render() {
-    const { selectedCustomerID} = this.state
+    const { selectedCustomerID, selectedOrder} = this.state
       
       return (
             <div id='container'>
@@ -31,11 +32,12 @@ class App extends Component{
                     )}
               {selectedCustomerID &&
               (<OrderList 
-                customerID = {selectedCustomerID}
+                customerid = {selectedCustomerID}
+                onOrderSelect = {this.handleOrderSelect}
                 />
-              
               )}
-              
+              {selectedOrder &&
+              <ProductList />}
             </div>
 
         )

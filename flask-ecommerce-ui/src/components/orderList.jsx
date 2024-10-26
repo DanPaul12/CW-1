@@ -24,7 +24,7 @@ const OrderList = ({customerid}) => {
                     ID: {order.id} Date: {order.date}</li>
                 ))}
                 </ul>
-                {console.log(orders)}
+                
             </div>
         )
     }
