@@ -37,7 +37,8 @@ class App extends Component{
                 />
               )}
               {selectedOrder &&
-              <ProductList />}
+              <ProductList 
+                orderID={selectedOrder}/>}
             </div>
 
         )
