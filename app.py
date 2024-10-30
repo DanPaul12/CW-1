@@ -34,7 +34,13 @@ class CustomerSchema(ma.Schema):
     email = fields.String(required=True)
     phone = fields.String(required=True)
 
+class CustomersSchema(ma.Schema):
+    name = fields.String(required=True)
+    email = fields.String(required=True)
+    phone = fields.String(required=True)
+
 customer_schema = CustomerSchema()
+customers_schema = CustomersSchema(many=True)
 
 
 #-------------------------------------------------------------------------------
@@ -47,6 +53,16 @@ def add_customer():
         db.session.add(customer)
         db.session.commit()
         return jsonify({'message': 'customer added'}), 200
+    except ValidationError as error:
+        return jsonify(error.messages), 404
+
+@app.route('/customers', methods = ['GET'])
+def get_cusomers():
+    try:
+        query = select(Customer)
+        result = db.session.execute(query).scalars
+        customers = result.all
+        return customers_schema.jsonify(customers)
     except ValidationError as error:
         return jsonify(error.messages), 404
 
