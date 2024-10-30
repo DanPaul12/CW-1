@@ -9,11 +9,13 @@ class CustomerList extends Component {
 
 
     componentDidMount() {
-        const fetchedCustomers = [
-            {id: 1, name: 'Alice'},
-            {id: 2, name: 'Bob'},
-        ]
-        this.setState({customers : fetchedCustomers})
+        axios.get('http://127.0.0.1:5000/customers')
+        .then(response => {
+            this.setState({customers : response.data})
+        })
+        .catch(error => 
+            console.error('Error:', error)
+        )
     }
 
     selectCustomer = (id) => {

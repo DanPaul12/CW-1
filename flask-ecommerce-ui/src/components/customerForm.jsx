@@ -37,7 +37,6 @@ class CustomerForm extends Component {
         
     }
 
-
     render(){
         const {name, email, phone} = this.state
 
