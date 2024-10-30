@@ -1,5 +1,5 @@
 import { Component } from "react"
-import axios from axios
+import axios from 'axios'
 
 class CustomerForm extends Component {
     constructor(props){
@@ -21,6 +21,20 @@ class CustomerForm extends Component {
         event.preventDefault()
         console.log('New customer: ', this.state)
 
+        const customerData = {
+            name : this.state.name.trim(),
+            email : this.state.email.trim(),
+            phone : this.state.phone.trim()
+        }
+        
+        axios.post('/customers', customerData)
+            .then(response => {
+                console.log('Customer Saved Successfully', response.data)
+            })
+            .catch(error => {
+                console.error('Error submitting', error)
+            })
+        
     }
 
 
