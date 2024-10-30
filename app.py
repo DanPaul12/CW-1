@@ -61,7 +61,7 @@ def get_cusomers():
     try:
         query = select(Customer)
         result = db.session.execute(query).scalars
-        customers = result.all
+        customers = result.all()
         return customers_schema.jsonify(customers)
     except ValidationError as error:
         return jsonify(error.messages), 404
