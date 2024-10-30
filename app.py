@@ -60,7 +60,7 @@ def add_customer():
 def get_cusomers():
     try:
         query = select(Customer)
-        result = db.session.execute(query).scalars
+        result = db.session.execute(query).scalars()
         customers = result.all()
         return customers_schema.jsonify(customers)
     except ValidationError as error:
