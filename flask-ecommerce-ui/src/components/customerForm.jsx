@@ -11,7 +11,7 @@ class CustomerForm extends Component {
     }
 
     handleChange = (event) => {
-        const {name, value} = event.target
+        const {name, value} = event.target;
         this.setState({[name]: value})
         console.log(name, value)
     }
@@ -30,17 +30,17 @@ class CustomerForm extends Component {
             <form onSubmit={() => this.handleSubmit()}>
                 <label>
                     Name
-                    <input type="text" name="name" value={name} onChange={() => this.handleChange()}></input>
+                    <input type="text" name="name" value={name} onChange={this.handleChange}></input>
                 </label>
                 <br/>
                 <label>
                     Email
-                    <input type="text" name="email" value={email} onChange={() => this.handleChange()}></input>
+                    <input type="text" name="email" value={email} onChange={this.handleChange}></input>
                 </label>
                 <br/>
                 <label>
                     Phone
-                    <input type="text" name="phone" value={phone} onChange={() => this.handleChange()}></input>
+                    <input type="text" name="phone" value={phone} onChange={this.handleChange}></input>
                 </label>
                 <br/>
             </form>
