@@ -13,15 +13,19 @@ const ProductForm = () => {        //whats deal with semicolons and inputting pr
     }
 
     return(
-        <form onSubmit={handleSubmit()}>
+        <form onSubmit={handleSubmit}>
+            <h3>Product Form</h3>
             <label>
                 Name
                 <input type="text" ref={nameRef}></input>
             </label>
+            <br />
             <label>
                 Price
                 <input type="text" ref={nameRef}></input>
             </label>
+            <br />
+            <button type="submit">Submit</button>
         </form>
     )
 }

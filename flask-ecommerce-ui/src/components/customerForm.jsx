@@ -28,6 +28,7 @@ class CustomerForm extends Component {
 
         return (
             <form onSubmit={this.handleSubmit}>
+                <h3>Customer Form</h3>
                 <label>
                     Name
                     <input type="text" name="name" value={name} onChange={this.handleChange}></input>

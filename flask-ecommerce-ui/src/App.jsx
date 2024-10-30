@@ -3,6 +3,7 @@ import CustomerList from './components/customerList'
 import OrderList from './components/orderList'
 import ProductList from './components/productList'
 import CustomerForm from './components/customerForm'
+import ProductForm from './components/productForm'
 
 
 class App extends Component{
@@ -27,6 +28,7 @@ class App extends Component{
       return (
             <div id='container'>
               <CustomerForm />
+              <ProductForm />
               <h3>Customer List</h3>
               <CustomerList onCustomerSelect = {this.handleCustomerSelect}/>
               {selectedCustomerID && (
