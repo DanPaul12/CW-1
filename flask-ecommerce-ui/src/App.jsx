@@ -2,6 +2,7 @@ import { Component, useState } from 'react'
 import CustomerList from './components/customerList'
 import OrderList from './components/orderList'
 import ProductList from './components/productList'
+import CustomerForm from './components/customerForm'
 
 
 class App extends Component{
@@ -25,6 +26,7 @@ class App extends Component{
       
       return (
             <div id='container'>
+              <CustomerForm />
               <h3>Customer List</h3>
               <CustomerList onCustomerSelect = {this.handleCustomerSelect}/>
               {selectedCustomerID && (
