@@ -27,7 +27,7 @@ class CustomerForm extends Component {
             phone : this.state.phone.trim()
         }
         
-        axios.post('/customers', customerData)
+        axios.post('http://127.0.0.1:5000/customers', customerData)
             .then(response => {
                 console.log('Customer Saved Successfully', response.data)
             })
