@@ -17,7 +17,7 @@ class Base(DeclarativeBase):
     pass
 
 ma = Marshmallow(app)
-db = SQLAlchemy(app, model_class=Base)
+db = SQLAlchemy(app)
 CORS(app)
 
 #----------------------------------------------------------------------------
