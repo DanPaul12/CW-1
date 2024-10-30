@@ -39,7 +39,7 @@ customer_schema = CustomerSchema()
 
 #-------------------------------------------------------------------------------
 
-@app.route('customers', methods=['POST']) 
+@app.route('/customers', methods=['POST']) 
 def add_customer():
     try:
         cusomer_data = customer_schema.load(request.json)
