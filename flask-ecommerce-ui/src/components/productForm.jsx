@@ -22,7 +22,7 @@ const ProductForm = () => {        //whats deal with semicolons and inputting pr
             <br />
             <label>
                 Price
-                <input type="text" ref={nameRef}></input>
+                <input type="text" ref={priceRef}></input>
             </label>
             <br />
             <button type="submit">Submit</button>

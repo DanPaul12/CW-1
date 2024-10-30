@@ -29,7 +29,6 @@ class App extends Component{
             <div id='container'>
               <CustomerForm />
               <ProductForm />
-              <h3>Customer List</h3>
               <CustomerList onCustomerSelect = {this.handleCustomerSelect}/>
               {selectedCustomerID && (
                         <p> Customer id is {selectedCustomerID}</p>
