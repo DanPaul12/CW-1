@@ -11,7 +11,7 @@ class CustomerForm extends Component {
     }
 
     handleChange = (event) => {
-        const {name, value} = event.target;
+        const {name, value} = event.target;  //what exactly is happening here
         this.setState({[name]: value})
         console.log(name, value)
     }
@@ -27,7 +27,7 @@ class CustomerForm extends Component {
         const {name, email, phone} = this.state
 
         return (
-            <form onSubmit={() => this.handleSubmit()}>
+            <form onSubmit={this.handleSubmit}>
                 <label>
                     Name
                     <input type="text" name="name" value={name} onChange={this.handleChange}></input>
@@ -38,13 +38,14 @@ class CustomerForm extends Component {
                     <input type="text" name="email" value={email} onChange={this.handleChange}></input>
                 </label>
                 <br/>
-                <label>
-                    Phone
+                <label> 
+                    Phone  
                     <input type="text" name="phone" value={phone} onChange={this.handleChange}></input>
-                </label>
+                </label>                                      
                 <br/>
+                <button type="submit">Submit</button>
             </form>
-        )
+        ) //why dont these ones need parentheses and arrows?)
     }
 }
 

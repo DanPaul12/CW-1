@@ -1,8 +1,8 @@
 import { Component } from "react";
 
 class CustomerList extends Component {
-    constructor(props){
-        super(props)
+    constructor(props){    //what is this taking in?
+        super(props)        //what is deal with constructor/ super? how much class components?
         this.state = {
             customers : [],
             selectedCustomerId : null}}
@@ -18,7 +18,7 @@ class CustomerList extends Component {
 
     selectCustomer = (id) => {
         this.setState({selectedCustomerId : id});
-        this.props.onCustomerSelect(id)
+        this.props.onCustomerSelect(id) //is this the props were taking in? 
     }
 
     render(){
@@ -30,7 +30,7 @@ class CustomerList extends Component {
                 <ul>
                     {customers.map(customer => (
                         <li key = {customer.id} onClick={()=>this.selectCustomer(customer.id)}> 
-                        {customer.name}</li>
+                        {customer.name}</li>  // why does this one need arrow function but not form ones?
                     ))}
                 </ul>
             </div>
