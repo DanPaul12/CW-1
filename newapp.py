@@ -10,8 +10,17 @@ from marshmallow import fields, validate, ValidationError
 
 
 app = Flask(__name__)
-ma = Marshmallow(app)
-app.config
+app.config['SQLALCHEMY_DATABASE_URI']= 'mysql+mysqlconnector://root:thegoblet2@localhost/e_commerce_db'
 
 class Base(DeclarativeBase):
     pass
+
+ma = Marshmallow(app)
+db = SQLAlchemy(app, model_class=Base)
+CORS(app)
+
+
+
+
+
+
