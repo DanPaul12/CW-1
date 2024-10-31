@@ -7,7 +7,7 @@ import ProductForm from './components/productForm'
 
 
 const App = () => {
-  const [products, setProducts] =useState([])
+  const [products, setProducts] = useState([])
 
     useEffect(() => {
         fetchProducts()
