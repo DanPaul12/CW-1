@@ -6,47 +6,30 @@ import CustomerForm from './components/customerForm'
 import ProductForm from './components/productForm'
 
 
-class App extends Component{
-  constructor(props){
-    super(props)
-      this.state = {selectedCustomerID : null}
-      this.state = {selectedOrder : null}
+const App = () => {
+  const [products, setProducts] =useState([])
+
+    useEffect(() => {
+        fetchProducts()
+        }, [])
+  
+    const fetchProducts = async () => {
+      try{
+        const response = await axios.get('http://127.0.0.1:5000/products')
+        setProducts(response.data)}
+      catch (error){
+        console.error(error)
+      }
     }
-
-
-  handleCustomerSelect = (customerID) => {
-    this.setState({selectedCustomerID : customerID})
-  }
-
-  handleOrderSelect = (orderID) => {
-    this.setState({selectedOrder : orderID})
-  }
-
-  render() {
-    const { selectedCustomerID, selectedOrder} = this.state
       
       return (
             <div id='container'>
-              <CustomerForm />
               <ProductForm />
-              <CustomerList onCustomerSelect = {this.handleCustomerSelect}/>
-              {selectedCustomerID && (
-                        <p> Customer id is {selectedCustomerID}</p>
-                    )}
-              {selectedCustomerID &&
-              (<OrderList 
-                customerid = {selectedCustomerID}
-                onOrderSelect = {this.handleOrderSelect}
-                />
-              )}
-              {selectedOrder &&
-              <ProductList 
-                orderID={selectedOrder}/>}
+              <ProductList products = {products}/>
             </div>
 
         )
   }
-  
-};
+
 
 export default App

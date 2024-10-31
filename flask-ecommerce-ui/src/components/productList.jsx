@@ -1,19 +1,8 @@
 import { useState, useEffect } from "react";
 
 
-const ProductList = ({orderID}) => {
-    const [products, setProducts] =useState([])
-
-    useEffect(() => {
-        if (orderID) {
-            const fetchedProducts = [
-                {id: "a1", name: "cookies"},
-                {id: "b2", name: "bookies"}
-            ]
-            setProducts(fetchedProducts)
-        }
-    }, [orderID]
-)
+const ProductList = ({products}) => {
+    
 
     return(
         <div className="products">
