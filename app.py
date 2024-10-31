@@ -42,6 +42,19 @@ class CustomersSchema(ma.Schema):
 customer_schema = CustomerSchema()
 customers_schema = CustomersSchema(many=True)
 
+class Product(db.Model):
+    __tablename__ = 'Products'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String (255), nullable = False)
+    price = db.Column(db.Float, nullable = False)
+
+class ProductSchema(ma.Schema):
+    name = fields.String(required=True)
+    price = fields.String(required=True)
+
+product_schema = ProductSchema()
+products_schema = ProductSchema(many=True)
+
 
 #-------------------------------------------------------------------------------
 
@@ -63,6 +76,16 @@ def get_cusomers():
         result = db.session.execute(query).scalars()
         customers = result.all()
         return customers_schema.jsonify(customers)
+    except ValidationError as error:
+        return jsonify(error.messages), 404
+
+@app.route('/products', methods= ['GET'])
+def get_products():
+    try:
+        query = select(Product)
+        result = db.session.execute(query).scalars()
+        products = result.all()
+        return products_schema.jsonify(products)
     except ValidationError as error:
         return jsonify(error.messages), 404
 
