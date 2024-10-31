@@ -1,10 +1,10 @@
-import { Component, useState } from 'react'
+import { Component, useState, useEffect } from 'react'
 import CustomerList from './components/customerList'
 import OrderList from './components/orderList'
 import ProductList from './components/productList'
 import CustomerForm from './components/customerForm'
 import ProductForm from './components/productForm'
-
+import axios from 'axios'
 
 const App = () => {
   const [products, setProducts] = useState([])
