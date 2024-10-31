@@ -8,6 +8,7 @@ import axios from 'axios'
 
 const App = () => {
   const [products, setProducts] = useState([])
+  const [selectedProduct, setSelectedProduct] = useState([])
 
     useEffect(() => {
         fetchProducts()
@@ -21,11 +22,29 @@ const App = () => {
         console.error(error)
       }
     }
+
+    const handleEditProduct = (product) => {
+      setSelectedProduct(product)
+    }
+
+    const handleDeleteProduct = () => {
+      fetchProducts()
+      setSelectedProduct(null)
+    }
+
+    const handleUpdateProduct = () => {
+      fetchProducts()
+    }
       
       return (
             <div id='container'>
-              <ProductForm />
-              <ProductList products = {products}/>
+              <ProductForm 
+                selectedProduct = {selectedProduct}
+                onUpdate = {handleUpdateProduct}/>
+              <ProductList 
+                products = {products}
+                onEdit = {handleEditProduct}
+                onDelete={handleDeleteProduct}/>
             </div>
 
         )

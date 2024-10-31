@@ -1,7 +1,7 @@
 import { useRef } from "react";
 
-const ProductForm = () => {        //whats deal with semicolons and inputting prop types?
-    const nameRef = useRef(null)   //what exactly does {} represent in jsx
+const ProductForm = (selectedProduct) => {        //whats deal with semicolons and inputting prop types?
+    const nameRef = useRef(null)                  //what exactly does {} represent in jsx
     const priceRef = useRef(null)
 
 
@@ -10,6 +10,12 @@ const ProductForm = () => {        //whats deal with semicolons and inputting pr
         const name = nameRef.current.value 
         const price = priceRef.current.value 
         console.log("name:", {name}, "price:", {price})
+        if (selectedProduct){
+            const editProduct = async () => 
+                axios.put('/products{}')
+        } else {
+            axios.post('/products')
+        }
     }
 
     return(
