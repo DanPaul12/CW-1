@@ -89,6 +89,17 @@ def get_products():
     except ValidationError as error:
         return jsonify(error.messages), 404
 
+@app.route('/products', methods = ['POST'])
+def post_products():
+    try:
+        product_data = product_schema.load(request.json)
+        product = Product(name = product_data['name'], email = product_data['email'])
+        db.session.add(product)
+        db.session.commit()
+        return jsonify({'message': 'product added'}), 200
+    except ValidationError as error:
+        return jsonify(error.messages), 404
+
 
 #--------------------------------------------------------------------------------------
 
