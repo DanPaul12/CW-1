@@ -38,6 +38,8 @@ const App = () => {
       
       return (
             <div id='container'>
+              <CustomerForm/>
+              <CustomerList/>
               <ProductForm 
                 selectedProduct = {selectedProduct}
                 onUpdate = {handleUpdateProduct}/>

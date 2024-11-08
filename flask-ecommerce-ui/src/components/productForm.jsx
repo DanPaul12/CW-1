@@ -19,7 +19,7 @@ const ProductForm = (selectedProduct) => {        //whats deal with semicolons a
     }
 
     return(
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={() => handleSubmit}>
             <h3>Product Form</h3>
             <label>
                 Name

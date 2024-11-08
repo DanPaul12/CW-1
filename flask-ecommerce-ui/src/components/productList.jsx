@@ -14,8 +14,8 @@ const ProductList = ({products, onEdit, onDelete}) => {
                 {products.map(product => (
                     <li key = {product.id}>
                         ID: {product.id}, Name: {product.name}
-                        <button onClick={onEdit(product)}>Edit</button>
-                        <button onClick={handleDelete(product.id)}>Delete</button>
+                        <button onClick={() => onEdit(product)}>Edit</button>
+                        <button onClick={() => handleDelete(product.id)}>Delete</button>
                     </li>
                 ))}
             </ul>
