@@ -4,10 +4,7 @@ import axios from "axios";
 
 const ProductList = ({products, onEdit, onDelete}) => {
     
-    const handleDelete = (id) => {
-        axios.delete(`http://127.0.0.1:5000/products/${id}`)
-        onDelete()
-    }
+  
 
 
     return(
@@ -18,7 +15,7 @@ const ProductList = ({products, onEdit, onDelete}) => {
                     <li key = {product.id}>
                         ID: {product.id}, Name: {product.name}
                         <button onClick={() => onEdit(product)}>Edit</button>
-                        <button onClick={() => handleDelete(product.id)}>Delete</button>
+                        <button onClick={() => onDelete(product.id)}>Delete</button>
                     </li>
                 ))}
             </ul>

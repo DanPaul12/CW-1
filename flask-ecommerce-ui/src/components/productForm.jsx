@@ -32,6 +32,7 @@ const ProductForm = (selectedProduct, onUpdate) => {
                 //setName(response.name)
                 //setPrice(response.price)
             }
+            onUpdate()
             setName('')
             setPrice('')
         }catch (error){

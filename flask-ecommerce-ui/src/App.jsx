@@ -12,7 +12,7 @@ const App = () => {
 
     useEffect(() => {
         fetchProducts()
-        }, [])
+        }, [selectedProduct])
   
     const fetchProducts = async () => {
       try{
@@ -29,13 +29,14 @@ const App = () => {
       setSelectedProduct(product)
     }
 
-    const handleDeleteProduct = () => {
+    const handleDeleteProduct = (id) => {
+      axios.delete(`http://127.0.0.1:5000/products/${id}`)
       fetchProducts()
       setSelectedProduct(null)
     }
 
-    const handleUpdateProduct = () => {
-      fetchProducts()
+    const handleUpdateProduct = async () => {
+      await fetchProducts()
     }
       
       return (
