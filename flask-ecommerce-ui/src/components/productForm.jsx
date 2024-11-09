@@ -1,26 +1,36 @@
 import { useRef, useState, useEffect } from "react";
+import axios from "axios";
 
 const ProductForm = (selectedProduct, onUpdate) => { 
     const [name, setName] = useState('') 
     const [price, setPrice] = useState('')  
+    const selectedProductExists = selectedProduct.selectedProduct
     
     useEffect(()=>{
-        if (selectedProduct){
-        setName(selectedProduct.name)
-        setPrice(selectedProduct.price)}
+        if (selectedProductExists){
+        setName(selectedProduct.selectedProduct.name)
+        setPrice(selectedProduct.selectedProduct.price)}
     },[selectedProduct])
     
 
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        const productData = {name, price}                     //whats happening here
+        const productData = {"name": name, "price": price}                     //whats happening here
         console.log("name:", {name}, "price:", {price})
+
         try{
-            if (selectedProduct){
-                await axios.put(`http://127.0.0.1:5000/products${selectedProduct.id}`, productData)
-            } else {
-                await axios.post('http://127.0.0.1:5000/products', productData)
+            // update 
+           if (selectedProductExists){
+                const update_response = await axios.put(`http://127.0.0.1:5000/products/${selectedProduct.selectedProduct.id}`, productData)
+                console.log(update_response)
+            } 
+            // create
+            else {
+                const response2 = await axios.post('http://127.0.0.1:5000/products', productData)
+                console.log(response2)
+                //setName(response.name)
+                //setPrice(response.price)
             }
             setName('')
             setPrice('')
@@ -30,7 +40,7 @@ const ProductForm = (selectedProduct, onUpdate) => {
     }
 
     return(
-        <form onSubmit={() => handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <h3>Product Form</h3>
             <label>
                 Name

@@ -8,7 +8,7 @@ import axios from 'axios'
 
 const App = () => {
   const [products, setProducts] = useState([])
-  const [selectedProduct, setSelectedProduct] = useState([])
+  const [selectedProduct, setSelectedProduct] = useState(null)
 
     useEffect(() => {
         fetchProducts()
@@ -17,6 +17,8 @@ const App = () => {
     const fetchProducts = async () => {
       try{
         const response = await axios.get('http://127.0.0.1:5000/products')
+        //console.log(response)
+        //console.log(response.data)
         setProducts(response.data)}
       catch (error){
         console.error(error)
