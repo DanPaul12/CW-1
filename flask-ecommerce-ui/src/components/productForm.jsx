@@ -21,7 +21,7 @@ const ProductForm = ({selectedProduct, onUpdate}) => {
 
         try{
             // update 
-           if (selectedProductExists){
+           if (selectedProduct){
                 const update_response = await axios.put(`http://127.0.0.1:5000/products/${selectedProduct.id}`, productData)
                 console.log(update_response)
             } 

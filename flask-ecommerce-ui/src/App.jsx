@@ -5,12 +5,14 @@ import ProductList from './components/productList'
 import CustomerForm from './components/customerForm'
 import ProductForm from './components/productForm'
 import CustomerList2 from './components/customerList2'
+import CustomerForm2 from './components/customerForm2'
 import axios from 'axios'
 
 const App = () => {
   const [products, setProducts] = useState([])
   const [customers, setCustomers] = useState([])
   const [selectedProduct, setSelectedProduct] = useState(null)
+  const [selectedCustomer, setSelectedCustomer] = useState(null)
 
     useEffect(() => {
         fetchProducts()
@@ -58,12 +60,17 @@ const App = () => {
       fetchProducts()
       setSelectedProduct(null)
     }
+
+    const handleCustomerUpdate =  () => {
+      fetchCustomers()
+    }
       
       return (
             <div id='container'>
-              <CustomerForm/>
+              <CustomerForm2/>
               <CustomerList2 
-                customers = {customers}/>
+                customers = {customers}
+                updateCustomer = {handleCustomerUpdate}/>
               <ProductForm 
                 selectedProduct = {selectedProduct}
                 onUpdate = {handleUpdateProduct}/>
