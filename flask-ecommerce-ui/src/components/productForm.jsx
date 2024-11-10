@@ -1,15 +1,15 @@
 import { useRef, useState, useEffect } from "react";
 import axios from "axios";
+import {array, func} from 'prop-types'
 
-const ProductForm = (selectedProduct, onUpdate) => { 
+const ProductForm = ({selectedProduct, onUpdate}) => { 
     const [name, setName] = useState('') 
     const [price, setPrice] = useState('')  
-    const selectedProductExists = selectedProduct.selectedProduct
     
     useEffect(()=>{
-        if (selectedProductExists){
-        setName(selectedProduct.selectedProduct.name)
-        setPrice(selectedProduct.selectedProduct.price)}
+        if (selectedProduct){
+        setName(selectedProduct.name)
+        setPrice(selectedProduct.price)}
     },[selectedProduct])
     
 
@@ -22,7 +22,7 @@ const ProductForm = (selectedProduct, onUpdate) => {
         try{
             // update 
            if (selectedProductExists){
-                const update_response = await axios.put(`http://127.0.0.1:5000/products/${selectedProduct.selectedProduct.id}`, productData)
+                const update_response = await axios.put(`http://127.0.0.1:5000/products/${selectedProduct.id}`, productData)
                 console.log(update_response)
             } 
             // create
@@ -56,6 +56,10 @@ const ProductForm = (selectedProduct, onUpdate) => {
             <button type="submit">Submit</button>
         </form>
     )
+}
+
+ProductForm.propTypes = {
+    onUpdate : func
 }
 
 export default ProductForm 

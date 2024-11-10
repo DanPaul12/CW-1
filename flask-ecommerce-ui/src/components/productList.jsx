@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-
+                          //when are curly braces needed
 
 const ProductList = ({products, onEdit, onDelete}) => {
     
