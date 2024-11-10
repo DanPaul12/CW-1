@@ -30,17 +30,14 @@ class Customer(db.Model):
     phone = db.Column(db.String (15))
 
 class CustomerSchema(ma.Schema):
+    id = fields.Integer()
     name = fields.String(required=True)
     email = fields.String(required=True)
     phone = fields.String(required=True)
 
-class CustomersSchema(ma.Schema):
-    name = fields.String(required=True)
-    email = fields.String(required=True)
-    phone = fields.String(required=True)
 
 customer_schema = CustomerSchema()
-customers_schema = CustomersSchema(many=True)
+customers_schema = CustomerSchema(many=True)
 
 class Product(db.Model):
     __tablename__ = 'Products'
@@ -49,11 +46,26 @@ class Product(db.Model):
     price = db.Column(db.Float, nullable = False)
 
 class ProductSchema(ma.Schema):
+    id = fields.Integer()
     name = fields.String(required=True)
     price = fields.String(required=True)
 
 product_schema = ProductSchema()
 products_schema = ProductSchema(many=True)
+
+class Order(db.Model):
+    __tablename__ = 'Orders'
+    id = db.Column(db.Integer, primary_key = True)
+    date = db.Column(db.Date, nullable = False)
+    customer_id = db.Column(db.Integer, db.ForeignKey("Customer.id"))
+
+class OrdersSchema(ma.Schema):
+    id = fields.Integer()
+    date = fields.String(required=True)
+    customer_id = fields.Integer()
+
+order_schema = OrdersSchema()
+orders_schema = OrdersSchema(many=True)
 
 
 #-------------------------------------------------------------------------------
@@ -79,6 +91,30 @@ def get_cusomers():
     except ValidationError as error:
         return jsonify(error.messages), 404
 
+@app.route('/customers/<int:id>', methods = ['DELETE'])
+def delete_customer(id):
+    try:
+        customer = Customer.query.get_or_404(id)
+        db.session.delete(customer)
+        db.session.commit()
+        return jsonify({"message":"member deleted"}), 201
+    except ValidationError as error:
+        return jsonify(error.messages), 404
+
+@app.route('/customers/<int:id>', methods = ['PUT'])
+def update_customer(id):
+    try:
+        customer = Customer.query.get_or_404(id)
+        new_info = customer_schema.load(request.json)
+        customer.name = new_info['name']
+        customer.email = new_info['email']
+        customer.phone = new_info['phone']
+        db.session.commit()
+        return jsonify({"message":"member updated"}), 201
+    except ValidationError as error:
+        return jsonify(error.messages), 404
+
+
 @app.route('/products', methods= ['GET'])
 def get_products():
     try:
@@ -93,12 +129,35 @@ def get_products():
 def post_products():
     try:
         product_data = product_schema.load(request.json)
-        product = Product(name = product_data['name'], email = product_data['email'])
+        product = Product(name = product_data['name'], price = product_data['price'])
         db.session.add(product)
         db.session.commit()
         return jsonify({'message': 'product added'}), 200
     except ValidationError as error:
         return jsonify(error.messages), 404
+
+@app.route('/products/<int:id>', methods=['PUT'])
+def update_product(id):
+    try:
+        product_info = Product.query.get_or_404(id)
+        new_info = product_schema.load(request.json)
+        product_info.name = new_info['name']
+        product_info.price = new_info['price']
+        db.session.commit()
+        return jsonify({'message':'product updated'}), 201
+    except ValidationError as error:
+        return jsonify(error.messages), 404
+
+@app.route('/products/<int:id>', methods = ['DELETE'])
+def delete_product(id):
+    try:
+        product = Product.query.get_or_404(id)
+        db.session.delete(product)
+        db.session.commit()
+        return jsonify({'message':'product deleted'}), 201
+    except ValidationError as error:
+        return jsonify(error.messages), 404
+
 
 
 #--------------------------------------------------------------------------------------
