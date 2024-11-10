@@ -2,7 +2,7 @@ import { useState } from "react"
 import axios from "axios"
 
 
-const CustomerList2 = ({customers}) => {
+const CustomerList2 = ({customers, onEdit, onPlaceOrder}) => {
     
     const deleteCustomer =  (id) => {
          axios.delete(`http://127.0.0.1:5000/customers/${id}`)
@@ -17,8 +17,9 @@ const CustomerList2 = ({customers}) => {
                 {customers.map(customer => (
                     <li key = {customer.id}>
                         ID: {customer.id}, Name: {customer.name}
-                        <button >Edit</button>
+                        <button onClick={() => onEdit(customer)}>Edit</button>
                         <button onClick={() => deleteCustomer(customer.id)}>Delete</button>
+                        <button onClick={() => onPlaceOrder(customer)}>Place Order</button>
                     </li>
                 ))}
             </ul>

@@ -6,7 +6,6 @@ const CustomerForm2 = ({selectedCustomer, updateCustomer}) => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
-    const [selectCustomer, setSelectedCustomer] = useState(null)
 
     useEffect(()=>{
         if (selectedCustomer){
@@ -22,10 +21,14 @@ const CustomerForm2 = ({selectedCustomer, updateCustomer}) => {
 
         if (selectedCustomer) {
             try{
-                await axios.put(`http://127.0.0.1:5000/customers/${selectCustomer.id}`, customer_data)
+                await axios.put(`http://127.0.0.1:5000/customers/${selectedCustomer.id}`, customer_data)
             }catch (error){
                 console.error(error)
             }
+            updateCustomer()
+            setName('')
+            setEmail('')
+            setPhone('')
         }else{
             try{
                await axios.post('http://127.0.0.1:5000/customers', customer_data)

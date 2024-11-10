@@ -6,6 +6,7 @@ import CustomerForm from './components/customerForm'
 import ProductForm from './components/productForm'
 import CustomerList2 from './components/customerList2'
 import CustomerForm2 from './components/customerForm2'
+import OrderForm from './components/orderForm'
 import axios from 'axios'
 
 const App = () => {
@@ -13,6 +14,7 @@ const App = () => {
   const [customers, setCustomers] = useState([])
   const [selectedProduct, setSelectedProduct] = useState(null)
   const [selectedCustomer, setSelectedCustomer] = useState(null)
+  const [selectedOrderCustomer, setSelectedOrderCustomer] = useState(null)
 
     useEffect(() => {
         fetchProducts()
@@ -42,12 +44,18 @@ const App = () => {
       }
     }
 
-    const handleEditCustomer = (id) => {
-      axios.put(`http://127.0.0.1:5000/customers/${id}`)
-    }
-
     const handleEditProduct = (product) => {
       setSelectedProduct(product)
+    }
+
+    const handleEditCustomer = (customer) => {
+      setSelectedCustomer(customer)
+      console.log(customer)
+    }
+
+    const handlePlaceOrderCustomer = (customer) => {
+      setSelectedOrderCustomer(customer)
+      console.log(customer)
     }
 
     const handleDeleteProduct = (id) => {
@@ -67,10 +75,13 @@ const App = () => {
       
       return (
             <div id='container'>
-              <CustomerForm2/>
+              {<CustomerForm2
+                updateCustomer = {handleCustomerUpdate}
+                selectedCustomer={selectedCustomer}/> }
               <CustomerList2 
                 customers = {customers}
-                updateCustomer = {handleCustomerUpdate}/>
+                onEdit = {handleEditCustomer} 
+                onPlaceOrder = {handlePlaceOrderCustomer} />
               <ProductForm 
                 selectedProduct = {selectedProduct}
                 onUpdate = {handleUpdateProduct}/>
@@ -78,6 +89,9 @@ const App = () => {
                 products = {products}
                 onEdit = {handleEditProduct}
                 onDelete={handleDeleteProduct}/>
+                <OrderForm
+                selectedCustomer={selectedOrderCustomer}/>
+
             </div>
 
         )
