@@ -4,6 +4,8 @@ import ProductForm from './components/productForm'
 import CustomerList2 from './components/customerList2'
 import CustomerForm2 from './components/customerForm2'
 import OrderForm from './components/orderForm'
+import NavBar from './components/NavigationBar'
+import Home from './components/home'
 import { Routes, Route } from 'react-router-dom'
 import axios from 'axios'
 
@@ -73,7 +75,10 @@ const App = () => {
       
       return (
             <div id='container'>
+              <NavBar/>
               <Routes>
+              <Route path='/' element =
+              {<Home/>}/>
               <Route path='/customers' element=
               {<div>
               <CustomerForm2
