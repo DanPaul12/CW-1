@@ -158,6 +158,17 @@ def delete_product(id):
     except ValidationError as error:
         return jsonify(error.messages), 404
 
+@app.route('/orders', methods=['POST']) 
+def add_order():
+    try:
+        order_data = order_schema.load(request.json)
+        order = Order(date = order_data['date'], customerid = order_data['customer_id'])
+        db.session.add(order)
+        db.session.commit()
+        return jsonify({'message': 'order added'}), 200
+    except ValidationError as error:
+        return jsonify(error.messages), 404
+
 
 
 #--------------------------------------------------------------------------------------
