@@ -5,8 +5,12 @@ import { Link } from "react-router-dom"
 
 const CustomerList2 = ({customers, onEdit, onPlaceOrder}) => {
     
-    const deleteCustomer =  (id) => {
-         axios.delete(`http://127.0.0.1:5000/customers/${id}`)
+    const deleteCustomer =  async (id) => {
+        try{
+        await axios.delete(`http://127.0.0.1:5000/customers/${id}`)
+        }catch{
+            console.log('Cannot be deleted: Member has associated order')
+        }
     }    //why not async
         //cant delete customers with orders
 

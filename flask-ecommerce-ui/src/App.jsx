@@ -58,8 +58,8 @@ const App = () => {
       console.log(customer)
     }
 
-    const handleDeleteProduct = (id) => {
-      axios.delete(`http://127.0.0.1:5000/products/${id}`)
+    const handleDeleteProduct = async (id) => {
+      await axios.delete(`http://127.0.0.1:5000/products/${id}`)
       fetchProducts()
       setSelectedProduct(null)
     }
