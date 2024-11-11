@@ -162,7 +162,7 @@ def delete_product(id):
 def add_order():
     try:
         order_data = order_schema.load(request.json)
-        order = Order(date = order_data['date'], customerid = order_data['customer_id'])
+        order = Order(date = order_data['date'], customer_id = order_data['customer_id'])
         db.session.add(order)
         db.session.commit()
         return jsonify({'message': 'order added'}), 200
