@@ -1,12 +1,10 @@
 import { Component, useState, useEffect } from 'react'
-import CustomerList from './components/customerList'
-import OrderList from './components/orderList'
 import ProductList from './components/productList'
-import CustomerForm from './components/customerForm'
 import ProductForm from './components/productForm'
 import CustomerList2 from './components/customerList2'
 import CustomerForm2 from './components/customerForm2'
 import OrderForm from './components/orderForm'
+import { Routes, Route } from 'react-router-dom'
 import axios from 'axios'
 
 const App = () => {
@@ -75,22 +73,38 @@ const App = () => {
       
       return (
             <div id='container'>
-              {<CustomerForm2
+              <Routes>
+              <Route path='/customers' element=
+              {<div>
+              <CustomerForm2
                 updateCustomer = {handleCustomerUpdate}
-                selectedCustomer={selectedCustomer}/> }
+                selectedCustomer={selectedCustomer}/>
+                
+              
               <CustomerList2 
                 customers = {customers}
                 onEdit = {handleEditCustomer} 
                 onPlaceOrder = {handlePlaceOrderCustomer} />
+                </div>}
+                />
+              <Route path='/products' element= 
+              {
+              <div>
               <ProductForm 
                 selectedProduct = {selectedProduct}
                 onUpdate = {handleUpdateProduct}/>
+                
               <ProductList 
                 products = {products}
                 onEdit = {handleEditProduct}
                 onDelete={handleDeleteProduct}/>
-                <OrderForm
-                selectedCustomer={selectedOrderCustomer}/>
+              </div>}
+                />
+              <Route path='/orders' element=
+              {<OrderForm
+                selectedCustomer={selectedOrderCustomer}/>}
+                />
+                </Routes>
 
             </div>
 

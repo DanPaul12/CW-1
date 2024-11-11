@@ -1,5 +1,6 @@
 import { useState } from "react"
 import axios from "axios"
+import { Link } from "react-router-dom"
 
 
 const CustomerList2 = ({customers, onEdit, onPlaceOrder}) => {
@@ -19,7 +20,9 @@ const CustomerList2 = ({customers, onEdit, onPlaceOrder}) => {
                         ID: {customer.id}, Name: {customer.name}
                         <button onClick={() => onEdit(customer)}>Edit</button>
                         <button onClick={() => deleteCustomer(customer.id)}>Delete</button>
+                        <Link to={'/orders'}>
                         <button onClick={() => onPlaceOrder(customer)}>Place Order</button>
+                        </Link>
                     </li>
                 ))}
             </ul>

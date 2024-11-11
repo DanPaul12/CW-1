@@ -1,15 +1,21 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import axios from "axios"
 
 const OrderForm = ({selectedCustomer}) => {
     const [date, setDate] = useState('')
     const [customerID, setCustomerID] = useState('')
 
-    const handleSubmit = (event) => {
+    useEffect(()=>{if (selectedCustomer)
+        {setCustomerID(selectedCustomer.id)
+        console.log(customerID)}
+    }, [selectedCustomer])
+
+    const handleSubmit = async (event) => {
         event.preventDefault()
-        setCustomerID(selectedCustomer.id)
+        console.log(customerID)
         const order_data = {'date': date, 'customer_id': customerID}
-        axios.post('http://127.0.0.1:5000/orders', order_data)
+        console.log(order_data)
+        await axios.post('http://127.0.0.1:5000/orders', order_data)
         
     }
     
@@ -19,7 +25,7 @@ const OrderForm = ({selectedCustomer}) => {
             <h3>Order Form</h3>
             <label>Date</label>
             <input type="date" value = {date} onChange={(e)=>setDate(e.target.value)}></input><br/>
-            <p>Customer: {selectedCustomer && selectedCustomer.name}</p> 
+            <p>Customer: {selectedCustomer && selectedCustomer.id}</p> 
             <button type="submit">Submit</button>
         </form>
     )
