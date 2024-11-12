@@ -1,8 +1,4 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Here is my e-commerce mini project. The app component contains components for product form,
+product list, customer form, customer list, and order form. All components use state to autmatically
+update, delete, or add customers or products without refreshing. Modals are used to demonstrate successful 
+transactions, and customers with associated orders are protected from deletion.
