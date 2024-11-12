@@ -8,6 +8,7 @@ import NavBar from './components/NavigationBar'
 import Home from './components/home'
 import { Routes, Route } from 'react-router-dom'
 import axios from 'axios'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 const App = () => {
   const [products, setProducts] = useState([])

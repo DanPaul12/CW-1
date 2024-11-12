@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import axios from "axios";
 import {array, func} from 'prop-types'
+import { Form, FormGroup, Modal, Button } from "react-bootstrap"
 
 const ProductForm = ({selectedProduct, onUpdate}) => { 
     const [name, setName] = useState('') 
@@ -41,20 +42,21 @@ const ProductForm = ({selectedProduct, onUpdate}) => {
     }
 
     return(
-        <form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
             <h3>Product Form</h3>
-            <label>
-                Name
-                <input type="text" value={name} onChange={(e)=> setName(e.target.value)}></input>
-            </label>
-            <br />
-            <label>
-                Price
-                <input type="text" value={price} onChange={(e)=> setPrice(e.target.value)}></input>
-            </label>
-            <br />
-            <button type="submit">Submit</button>
-        </form>
+            <Form.Group>
+                <Form.Label> Name </Form.Label>
+                <Form.Control type="text" value={name} onChange={(e)=> setName(e.target.value)}/>
+            </Form.Group>
+            <Form.Group>
+                <Form.Label> Price </Form.Label>
+                <Form.Control type="text" value={name} onChange={(e)=> setPrice(e.target.value)}/>
+            </Form.Group>
+            <br/>
+            <Button type="submit">Submit</Button>
+            <br/>
+            <br/>
+        </Form>
     )
 }
 
